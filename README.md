@@ -8,3 +8,16 @@ El diseño del sistema se basa en una arquitectura de microservicios para propor
 
 
 ![Diagraama de Clases](https://github.com/DonadoM/Parcial/assets/156842239/8c427a1e-a331-476a-8179-61e2bbfd89b3)
+
+Principio de Responsabilidad Única (SRP):
+
+Cumplimiento: Cada clase y función tiene una única razón para cambiar. Por ejemplo, en la clase CredictCard, se encarga exclusivamente de representar una tarjeta de crédito. La clase get_current_user en el módulo auth_service_py tiene la responsabilidad de validar y devolver el usuario actual.
+
+Principio Abierto/Cerrado (OCP):
+Cumplimiento: El código parece estar abierto para extensiones sin necesidad de modificaciones. Por ejemplo, puedes agregar nuevos métodos de pago o beneficios sin cambiar el código existente.
+
+Principio de Inversión de Dependencia (DIP):
+Cumplimiento: Las dependencias se inyectan, lo que facilita la inversión de dependencias en algunas partes del código, como en get_current_user.
+
+
+#NOTA: Los comentarios en el codigo fueron hechos por IA, estos mismmos fueron analizados y corroborados. Asimismo se empleo la guia PEP8 de python para mantener un estilo claro y con buen margen de presentaciòn. 
