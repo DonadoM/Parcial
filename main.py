@@ -1,25 +1,21 @@
 from auth_service_py import auth_app, get_current_user
-
 from datetime import date
-
 from fastapi import FastAPI, Depends, HTTPException
 from recommendation_service import app as recommendation_app
-
-
 from PaymentMethods import PaymentMethodsTypes
 from Person import UserModel, BenefitModel
 
+# Crea una instancia de la aplicación FastAPI
 app = FastAPI()
 
-
+# Ruta para obtener información del usuario
 @app.get("/user_info")
 def get_user_info():
-    user_data = {"user_id": 1, "username": "donadoM", "name": "Mauricio Donado",
-                 "email": "donadom@utb.edu.co"}
+    user_data = {"user_id": 1, "username": "donadoM", "name": "Mauricio Donado", "email": "donadom@utb.edu.co"}
     user = UserModel(**user_data)
     return user.dict()
 
-
+# Clase para representar una tarjeta de crédito
 class CredictCard:
     def __init__(self, cvv, expiry_year, expiry_month, number, zip_code, expety_date):
         self.cvv = cvv
@@ -33,23 +29,23 @@ class CredictCard:
         return (f'CredictCard(cvv={self.cvv}, expiry_year={self.expiry_year}, expiry_month={self.expiry_month}, '
                 f'number={self.number}, zip_code={self.zip_code}, expety_date={self.expety_date})')
 
-
+# Instancia de una tarjeta de crédito con datos simulados
 card = CredictCard(cvv=123, expiry_year=2024, expiry_month=12, number=1234567890123456, zip_code=12345,
                    expety_date=date(2024, 12, 31))
 
-
+# Ruta para obtener información de la tarjeta de crédito
 @app.get("/credit_card_info")
 async def get_credit_card_info():
     return card.__dict__
 
-
+# Ruta para obtener información sobre un beneficio
 @app.get("/benefit_info")
 def get_benefit_info():
     benefit_data = {"benefit_id": 1, "name": "Discount on purchases", "type": "Discount"}
     benefit = BenefitModel(**benefit_data)
     return benefit.dict()
 
-
+# Ruta para procesar un pago
 @app.post("/process_payment/{payment_method}")
 async def process_payment(payment_method: PaymentMethodsTypes):
     if payment_method == PaymentMethodsTypes.CREDIT:
@@ -68,16 +64,16 @@ async def process_payment(payment_method: PaymentMethodsTypes):
         # En caso de que se proporcione un método de pago no válido
         raise HTTPException(status_code=400, detail="Método de pago no válido")
 
-
+# Monta las aplicaciones de autenticación y recomendación
 app.mount("/auth", auth_app)
 app.mount("/recommendation", recommendation_app)
 
+# Ruta protegida que requiere autenticación
 @app.get("/protected")
 async def protected_route(current_user: str = Depends(get_current_user)):
     return {"message": f"Hello, {current_user}! This route is protected."}
 
-
-
+# Funciones para obtener la clave secreta y algoritmo (aunque están vacías en este código)
 def SECRET_KEY():
     return None
 
