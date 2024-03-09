@@ -1,6 +1,6 @@
 import unittest
 from fastapi.testclient import TestClient
-from main import app, UserModel  # Reemplaza 'your_main_module' con el nombre real de tu módulo principal
+from main import app, UserModel 
 
 
 ###
