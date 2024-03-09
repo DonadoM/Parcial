@@ -5,3 +5,6 @@ El diseño del sistema se basa en una arquitectura de microservicios para propor
 *Microservicios: -Autenticación Este microservicio maneja la autenticación de usuarios y la autorización para acceder a recursos específicos. Puede emitir tokens de acceso y gestionar la seguridad. -Gestión de Usuarios: Encargado de la gestión de perfiles de usuario, información personal y funciones asociadas a la identidad del usuario.
 
 -Gestión de Beneficios: Administra la lógica de negocio relacionada con los beneficios ofrecidos a los usuarios, como descuentos, recompensas o servicios específicos.
+
+
+![Diagraama de Clases](https://github.com/DonadoM/Parcial/assets/156842239/8c427a1e-a331-476a-8179-61e2bbfd89b3)
